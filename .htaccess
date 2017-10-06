@@ -1,0 +1,38 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)?$ index.php?link=$1 [NC,L]
+RewriteRule ^ADM?$ site/ADM/index.php [NC,L]
+RewriteRule ^ADM/(.*)?$ site/ADM/index.php?link=$1 [NC,L]
+#
+RewriteRule ^DRHU?$ site/DRHU/index.php [NC,L]
+RewriteRule ^DRHU/(.*)?$ site/DRHU/index.php?link=$1 [NC,L]
+#
+RewriteRule ^RH?$ site/RH/index.php [NC,L]
+RewriteRule ^RH/(.*)?$ site/RH/index.php?link=$1 
+#
+RewriteRule ^DIRETORIA?$ site/DIRETORIA/index.php [NC,L]
+RewriteRule ^DIRETORIA/(.*)?$ site/DIRETORIA/index.php?link=$1 [NC,L]
+#
+RewriteRule ^CHEFIA?$ site/CHEFIA/index.php [NC,L]
+RewriteRule ^CHEFIA/(.*)?$ site/CHEFIA/index.php?link=$1 [NC,L]
+#
+RewriteRule ^FUNCIONARIO?$ site/FUNCIONARIO/index.php [NC,L]
+RewriteRule ^FUNCIONARIO/(.*)?$ site/FUNCIONARIO/index.php?link=$1 [NC,L]
+
+
+
+
+#<IfModule mod_rewrite.c>
+#RewriteEngine On
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php?link=$1
+#RewriteRule ^FUNCIONARIO?$ site/FUNCIONARIO/index.php [NC,L]
+#RewriteRule ^CHEFIA?$ site/CHEFIA/index.php [NC,L]
+#RewriteRule ^RH?$ site/RH/index.php [NC,L]
+#RewriteRule ^DRHU?$ site/DRHU/index.php [NC,L]
+#RewriteRule ^ADM?$ site/ADM/index.php [NC,L]
+
+#</IfModule>
