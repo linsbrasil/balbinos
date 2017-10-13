@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="Data da Folga">Data da Folga</label>
-                    <input type="date" name='dados[datafolga]' placeholder ='<?php echo $datafolga; ?>'required="" class="form-control">
+                    <input type="date" name='dados[datafolga]' placeholder ='<?php echo $datafolga; ?>' required="" class="form-control">
                 </div>
             </div>
 
