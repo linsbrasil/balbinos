@@ -1,8 +1,7 @@
-<div id='index'>
 <?php 
 include_once '../../inc/inc.php';
+include_once '../../funcoes/calendario.php';
 session_start();
-include_once '../../inc/inc.php';
    /* session_start();
     if(!isset($_SESSION['id_login']) && !isset($_SESSION['nome_login'])  && !isset($_SESSION['email_login']) && !isset($_SESSION['nivel_login'])){
         header("location:".SITE_URL);
@@ -50,10 +49,10 @@ if(empty($_SESSION['tags'])){
 } else {
    $tags = $_SESSION['tags']; 
 }
-if(empty($_SESSION['nome'])){
+if(empty($_SESSION['nome_login'])){
   $user ='usuário';  
 }else{
-    $user = $_SESSION['nome'];
+    $user = $_SESSION['nome_nome'];
 }
 ?>
 
@@ -81,6 +80,21 @@ if(empty($_SESSION['nome'])){
                 break;
             case 'historico':
                 include_once '../FUNCIONARIO/funcionario/historico.php';
+                break;
+            case 'escala':
+                include_once '../escala.php';
+                break;
+            case 'marcar_folga':
+                include_once 'folga/marcar_folga.php';
+                break;
+            case 'editar_folga':
+                include_once 'folga/editar_folga.php';
+                break;
+            case 'erro':
+                include_once 'folga/erro.php';
+                break;
+            case 'sucesso':
+                include_once 'folga/sucesso.php';
                 break;
            default:
                 include_once 'home.php';

@@ -54,7 +54,7 @@
                 <ul class="navbar-nav nav navbar-right">
                     <li><a href="home">Home</a></li>
                     <li><a href="turno">Funcionários</a></li>
-                    <li><a href="escala_do_mes">Escala do Mês</a></li>
+                    <li><a href="escala">Escala do Mês</a></li>
                     <li><a href="agendar_folga">Agendar Folga</a></li>
                     <li><a href="http://www.aluguetemporada.com.br" target="_blank">Colônia de Férias</a></li>
                     <li>
