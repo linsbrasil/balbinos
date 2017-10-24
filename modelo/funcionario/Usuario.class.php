@@ -11,48 +11,24 @@
  *
  * @author emers
  */
-class Usuario {
-    protected $Id;
-    protected $Nome;
-    protected $Sobrenome;
-    protected $Nascimento;
-    protected $Email;
-    protected $Cargo;
-    protected $Senha;
-    protected $Idunidade;
-    protected $Plantao;
-    protected $Nivel;
-    protected $Ativo;
+abstract class Usuario {
+    private $Id;
+    private $Nome;
+    private $Sobrenome;
+    private $Nascimento;
+    private $Email;
+    private $Cargo;
+    private $Senha;
+    private $Idunidade;
+    private $Turno;
+    private $Nivel;
+    private $Ativo;
    
     function __construct() {
     }
     function getId() {
         return $this->Id;
-    }
-    
-    protected function cadastra($idunidade, $plantao, $nome, $sobreNome, $nascimento, $email, $cargo){
-        $this->setIdUnidade($idunidade);
-        $this->setPlantao($plantao);
-        $this->setNome($nome);
-        $this->setSobrenome($sobreNome);
-        $this->setNascimento($nascimento);
-        $this->setEmail($email);
-        $this->setCargo($cargo);
-    }
-    protected function atualiza($id, $plantao, $nome, $sobreNome, $nascimento, $email, $cargo){
-        $this->setId($id);
-        $this->setPlantao($plantao);
-        $this->setNome($nome);
-        $this->setSobrenome($sobreNome);
-        $this->setNascimento($nascimento);
-        $this->setEmail($email);
-        $this->setCargo($cargo);
-    }
-    protected function login($email, $senha){
-        $this->setEmail($email);
-        $this->setSenha($senha);
-    }
-            
+    }     
     protected function getNome() {
         return $this->Nome;
     }
@@ -81,8 +57,8 @@ class Usuario {
         return $this->Idunidade;
     }
 
-    protected function getPlantao() {
-        return $this->Plantao;
+    protected function getTurno() {
+        return $this->Turno;
     }
 
     protected function getNivel() {
@@ -94,10 +70,7 @@ class Usuario {
     }
 
     protected function setId($Id) {
-        if(!empty($Id)){
-            $id = (Int) $Id;
-            $this->Id = filter_var($id, FILTER_VALIDATE_INT);
-        }
+            $this->Id = filter_var($Id, FILTER_VALIDATE_INT);
     }
 
     protected function setNome($Nome) {
@@ -113,8 +86,8 @@ class Usuario {
     }
 
     protected function setEmail($Email) {
-        $email = trim(filter_var($Email));
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $Email = trim(filter_var($Email));
+        if(!filter_var($Email, FILTER_VALIDATE_EMAIL)){
             die('Email inválido');
         }
         $this->Email = $Email;
@@ -125,25 +98,22 @@ class Usuario {
     }
 
     protected function setSenha($Senha) {
-        $senha = trim($Senha);
-        if($senha > 7 && $senha <= 15){
-            $this->Senha = $senha;
+        $Senha = trim($Senha);
+        if($Senha > 7 && $Senha <= 15){
+            $this->Senha = $Senha;
         }
     }
 
     protected function setIdunidade($Idunidade) {
-        if(is_int($Idunidade)){
-            $this->Idunidade = trim(filter_var($Idunidade));
-        }
+        $this->Idunidade = trim(filter_var($Idunidade, FILTER_VALIDATE_INT));
     }
 
-    protected function setPlantao($Plantao) {
-        $this->Plantao = ucfirst(trim(filter_var($Plantao)));
+    protected function setTurno($Turno) {
+        $this->Turno = ucfirst(trim(filter_var($Turno)));
     }
 
     protected function setNivel($Nivel) {
-        $nivel = (Int)$Nivel;
-        $this->Nivel = filter_var($nivel, FILTER_VALIDATE_INT);
+        $this->Nivel = filter_var($Nivel, FILTER_VALIDATE_INT);
     }
     protected function setAtivo($Ativo) {
         $this->Ativo = trim(filter_var($Ativo));
@@ -151,3 +121,4 @@ class Usuario {
 
 //Fim da Classe Usuário
 }
+?>

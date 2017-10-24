@@ -1,8 +1,7 @@
 <?php 
 include_once '../../inc/inc.php';
 session_start();
-include_once '../../inc/inc.php';
-    /*session_start();
+ /*
     if(!isset($_SESSION['id_login']) && !isset($_SESSION['nome_login'])  && !isset($_SESSION['email_login']) && !isset($_SESSION['nivel_login'])){
         header("location:".SITE_URL);
     }
@@ -14,7 +13,7 @@ include_once '../../inc/inc.php';
     }
     $id_login = $_SESSION['id_login'];
     $email_login = $_SESSION['email_login'];*/
-
+    $idunidade_login = $_SESSION['idunidade_login']=1;
 switch ($_GET['link']){
     case 'home':
         $_SESSION['titulo'] = 'Depto Pessoal';
@@ -75,7 +74,7 @@ if(empty($_SESSION['nome'])){
             case 'editar_usuario':
                 include_once 'funcionario/editar.php';
                 break;
-            case 'usuarios':
+            case 'funcionarios':
                 include_once 'funcionario/selecionar.php';
                 break;
             case 'alterar_senha':

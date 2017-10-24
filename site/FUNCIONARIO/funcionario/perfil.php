@@ -1,9 +1,6 @@
 <?php 
-/*if(!isset($_SESSION['id_login']) || empty($_SESSION['id_login'])){
-    header("location:".SITE_URL."/FUNCIONARIO/");
-}*/
 $usuario = new UsuarioDAO();
-$resultado = $usuario->selecionarUsuario($_SESSION['id_login']);
+$resultado = $usuario->selecionarUsuario($id_login);
 foreach ($resultado as $lin) {
     $idusuario = $lin['idusuario'];
     $nome = $lin['nome'];
@@ -27,10 +24,10 @@ foreach ($resultado as $lin) {
     <div id="perfil-main ">
         <br>
         <div id="perfil">
-            <h2><?php echo $nome." ".$sobreNome." Nascimento"; ?></h2>
+            <h2 class='text-capitalize'><?php echo $nome." ".$sobreNome." Nascimento"; ?></h2>
             <dl class="dl-horizontal">
                 <dt>Nome: </dt>
-                <dd><?php echo $nome." ".$sobreNome." Nascimento"; ?></dd>
+                <dd class='text-capitalize'><?php echo $nome." ".$sobreNome." Nascimento"; ?></dd>
                 <dt>Nasc:</dt>
                 <dd><?php echo $nascimento; ?></dd>
                 <dt>Cpf:</dt>
@@ -39,13 +36,13 @@ foreach ($resultado as $lin) {
 
             <dl class="dl-horizontal">
                 <dt>End: </dt>
-                <dd><?php echo $endereco; ?></dd>
+                <dd class='text-capitalize'><?php echo $endereco; ?></dd>
 
-                <dt>Bairro: </dt>
-                <dd><?php echo $bairro; ?></dd>
+                <dt >Bairro: </dt>
+                <dd class='text-capitalize'><?php echo $bairro; ?></dd>
 
                 <dt>Cidade:</dt>
-                <dd><?php echo $cidade." - SP"; ?></dd>
+                <dd class='text-capitalize'><?php echo $cidade." - SP"; ?></dd>
                 <dt>Cep:</dt>
                 <dd><?php echo $cep; ?></dd>
             </dl>
@@ -59,10 +56,10 @@ foreach ($resultado as $lin) {
 
             <dl class="dl-horizontal">
                 <dt>Plantão:</dt>
-                <dd><?php echo $plantao; ?></dd>
+                <dd class='text-capitalize'><?php echo $plantao; ?></dd>
 
                 <dt>Cargo:</dt>
-                <dd><?php echo $cargo; ?></dd>
+                <dd class='text-uppercase'><?php echo $cargo; ?></dd>
                 <?php 
                     if(!(empty($funcao))){
                         echo "
@@ -77,7 +74,7 @@ foreach ($resultado as $lin) {
 
         <div id="perfil-actions" class="row text-center">
             <div class="col-md-12 " >
-              <a href="alterar_usuario&idusuario=<?php echo $idusuario ?>" class="btn btn-primary">Editar</a>
+              <a href="alterar_usuario&idusuario=<?php echo $id_login ?>" class="btn btn-primary">Editar</a>
               <a href="usuarios" class="btn btn-default">Voltar</a>
               <a href="#" class="btn btn-warning" title="Definir uma função para este funcionário.">Função</a>
             </div>

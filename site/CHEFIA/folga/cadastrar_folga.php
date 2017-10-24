@@ -17,29 +17,32 @@
 
             <div class="row">
                 <div class="form-group col-md-12">
-                    <input type='hidden' name='dados[idchefe]' value='<?php echo $id_login; ?>'required="" class="form-control">
-                    <input type='hidden' name='dados[idusuario]' value='<?php echo $idusuario; ?>'required="" class="form-control">
+                    <input type='hidden' name='dados[Idunidade]' value='<?php echo $idunidade_login; ?>'required="" class="form-control">
+                    <input type='hidden' name='dados[Idchefe]' value='<?php echo $id_login; ?>'required="" class="form-control">
+                    <input type='hidden' name='dados[Idusuario]' value='<?php echo $idusuario; ?>'required="" class="form-control">
+                    <input type='hidden' name='dados[Cargo]' value='<?php echo $cargo_login; ?>'required="" class="form-control">
+                    <input type='hidden' name='dados[Turno]' value='<?php echo $turno_login; ?>'required="" class="form-control">
                 </div>
             </div>
             
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="campo1">Nome do Funcionário</label>
-                    <input type='text' readonly="true" name='dados[nome]' value='<?php echo $nomeUsuario." ".$sobrenomeUsuario; ?>'required="" class="form-control">
+                    <input type='text' readonly="true" name='dados[Usuario]' value='<?php echo $nomeUsuario." ".$sobrenomeUsuario; ?>'required="" class="form-control text-capitalize">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="Data da Folga">Data da Folga</label>
-                    <input type='date' name='dados[datafolga]' value=''required="" autocomplete="off" class="form-control">
+                    <input type='date' name='dados[Data]' value=''required="" autocomplete="off" class="form-control">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="Folga"> Tipo de Folga</label>
-                    <select name='dados[tipofolga]' class="form-control" autocomplete="off" required="">
+                    <select name='dados[Tipo]' class="form-control" autocomplete="off" required="">
                         <option value="sap" selected="">SAP</option> 
                         <option value="abo">ABONADA</option>
                         <option value="con">CONVOCADA</option>
@@ -52,14 +55,14 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <label for="Observações">Obs:</label>
-                    <textarea name='dados[obs]' value='' placeholder="Caso queira deixar alguma informação" class="form-control"></textarea>
+                    <textarea name='dados[Obs]' value='' placeholder="Caso queira deixar alguma informação" class="form-control"></textarea>
                 </div>
             </div>
 
             <div id="actions" class="row text-center">
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary">Salvar</button>
-                    <a href="index.html" class="btn btn-default">Cancelar</a>
+                    <a href="home" class="btn btn-default">Cancelar</a>
                 </div>
             </div>
         </form><!--Fim do Formulário-->

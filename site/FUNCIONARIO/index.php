@@ -1,8 +1,8 @@
 <?php
 include_once '../../inc/inc.php';
 session_start();
-include_once '../../inc/inc.php';
-    /*session_start();
+
+    /*
     if(!isset($_SESSION['id_login']) && !isset($_SESSION['nome_login'])  && !isset($_SESSION['email_login']) && !isset($_SESSION['nivel_login'])){
         header("location:".SITE_URL);
     }
@@ -12,9 +12,17 @@ include_once '../../inc/inc.php';
     if($_SESSION['nivel_login'] != 1){
         header("location:".SITE_URL);
     }
-    $id_login = $_SESSION['id_login'];
     $email_login = $_SESSION['email_login'];*/
-
+    $id_login = $_SESSION['id_login']=7 ;
+    $idunidade_login = $_SESSION['idunidade_login']=1;
+    $cargo_login = $_SESSION['cargo_login']='asp';
+    $turno_login = $_SESSION['turno_login']='t2';
+     
+    if(empty($_SESSION['nome_login'])){
+        $user ='usuário';  
+    }else{
+        $user = $_SESSION['nome_login'];
+    }
 ?>
 <?php
     switch ($_GET['link']){
@@ -57,11 +65,7 @@ if(empty($_SESSION['tags'])){
 } else {
    $tags = $_SESSION['tags']; 
 }
-if(empty($_SESSION['nome'])){
-  $user ='usuário';  
-}else{
-    $user = $_SESSION['nome'];
-}
+
 ?>
 
 <?php include 'header.php'; ?>
@@ -83,6 +87,12 @@ if(empty($_SESSION['nome'])){
                 break;
              case 'perfil':
                 include_once 'funcionario/perfil.php';
+                break;
+            case 'escala':
+                include_once 'folga/escala.php';
+                break;
+            case 'escala_historico':
+                include_once 'folga/escala_historico.php';
                 break;
             default:
                 include_once 'home.php';

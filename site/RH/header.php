@@ -72,7 +72,7 @@
                 <ul class="navbar-nav nav navbar-right">
                     <li><a href="home">Home</a></li><!-- href="?link=home" no .htaccess -->
                     <li><a href="cadastrar_usuario" >Cadastrar</a></li> <!-- href="?link=cadastrar_usuario" no .htaccess -->
-                    <li><a href="usuarios">Exibir</a></li><!-- href="?link=usuarios" no .htaccess -->
+                    <li><a href="funcionarios">Funcionários</a></li><!-- href="?link=usuarios" no .htaccess -->
                     <li>
                         <a href="#" class="dropdown-toggle" id="menu1" data-toggle="dropdown">Pesquisar por turno<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -97,7 +97,7 @@
                     <li>
                         <a href="#" class="dropdown-toggle" id="menu1" data-toggle="dropdown"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="perfil&idusuario={$_SESSION['id_login']}"><b>Ver perfil</b></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="perfil&idusuario=<?php echo $id_login; ?>"><b>Ver perfil</b></a></li>
                             <li role="presentation" class="divider"></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="alterar_senha"><b>Alterar senha</b></a></li>
                             <li role="presentation" class="divider"></li>

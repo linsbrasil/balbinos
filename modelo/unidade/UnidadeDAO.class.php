@@ -11,8 +11,8 @@
  *
  * @author emers
  */
-include_once '../modelo/conexao/Conexao.php';
-class Unidade {
+
+final class UnidadeDAO extends Unidade {
     private $table;
     private $con;
     function __construct($table, $con) {

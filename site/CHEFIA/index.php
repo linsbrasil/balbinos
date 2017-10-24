@@ -1,8 +1,7 @@
 <?php 
 include_once '../../inc/inc.php';
-include_once '../../funcoes/calendario.php';
 session_start();
-   /* session_start();
+   /* 
     if(!isset($_SESSION['id_login']) && !isset($_SESSION['nome_login'])  && !isset($_SESSION['email_login']) && !isset($_SESSION['nivel_login'])){
         header("location:".SITE_URL);
     }
@@ -11,9 +10,12 @@ session_start();
     }
     if($_SESSION['nivel_login'] != 2){
         header("location:".SITE_URL);
-    }
-    $id_login = $_SESSION['id_login'];
-    $email_login = $_SESSION['email_login'];*/
+    }*/
+    $idunidade_login = $_SESSION['idunidade_login']=1;
+    $id_login = $_SESSION['id_login']=1;
+    $email_login = $_SESSION['email_login'];   
+    $cargo_login = $_SESSION['cargo_login']='asp';
+    $turno_login = $_SESSION['turno_login']='t2';
 
 switch ($_GET['link']){
     case 'home':
@@ -82,10 +84,13 @@ if(empty($_SESSION['nome_login'])){
                 include_once '../FUNCIONARIO/funcionario/historico.php';
                 break;
             case 'escala':
-                include_once '../escala.php';
+                include_once 'folga/escala.php';
                 break;
-            case 'marcar_folga':
-                include_once 'folga/marcar_folga.php';
+            case 'acao':
+                include_once 'folga/acao.php';
+                break;
+            case 'cadastrar_folga':
+                include_once 'folga/cadastrar_folga.php';
                 break;
             case 'editar_folga':
                 include_once 'folga/editar_folga.php';

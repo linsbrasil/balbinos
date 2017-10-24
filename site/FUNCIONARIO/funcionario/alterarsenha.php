@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="repeteSenha">Repete Nova Senha</label>
-                            <input type='password' name='senha[repeteSenha]' value='' placeholder="********" required="" autocomplete="off"  onBlur="verificaSenha()" class="form-control" id="repeteSenha">
+                            <input type='password' name='senha[repeteSenha]' value='' placeholder="********" required="" autocomplete="off"  onBlur="return verificaSenha()" class="form-control" id="repeteSenha">
                         </div>
                     </div>
 

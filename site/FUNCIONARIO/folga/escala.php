@@ -1,12 +1,10 @@
 <?php
-    include_once '../../modelo/funcionario/UsuarioDAO.php';
+    include_once '../../funcoes/calendario.php';
+    //Instancia classe UsuarioDAO
     $funcionario = new UsuarioDAO();
-    $idunidade = 1;//$_SESSION['idunidade'];
-    $cargo = 'asp';//$_SESSION['cargo'];
-    $plantao = 't2';// $_SESSION['plantao'];
-    $resultado = $funcionario->selecionarPlantao($idunidade, $cargo, $plantao);
-    //instancia Folga
-    //$folga = new FolgaDAO();
+    $resultado = $funcionario->selecionarTurno($idunidade_login, $cargo_login, $turno_login);
+    //instancia classe FolgaDAO
+    $folga = new FolgaDAO();
 ?>
 <div class="container-fluid " id='oro'>
      
@@ -16,10 +14,35 @@
     
     <div id="top" class="container-fluid">
         <div class="col-md-5">
-            <form action="escala" method="post">     
-                Mês: <input style="border-radius:4px; padding: 3px;" id="pegmes" type="number" value="<?php if(isset($_POST['pegmes']) || !empty($_POST['pegmes'])){ echo $_POST['pegmes'];}?>" placeholder="<?php if(!isset($_POST['pegmes']) || empty($_POST['pegmes'])){$dtm = date('m'); echo $dtm;}?>" name="pegmes" min="1" max="12">&nbsp;&nbsp;
-                Ano: <input style="border-radius:4px; padding: 3px;" id="pegano" type="number" value="<?php if(isset($_POST['pegano']) || !empty($_POST['pegano'])){ echo $_POST['pegano'];}?>" placeholder="<?php if(!isset($_POST['pegano']) || empty($_POST['pegano'])){$dta = date('Y'); echo $dta;}?>" name="pegano" min="2017" max="2080">
-                <input style="border-radius:4px; padding: 3px;" type="submit" value="Pesquisar">         
+            <form action="escala" method="post">
+                Mês:
+                <select id="pegmes" name="pegmes" placeholder="<?php if(!isset($_POST['pegmes']) || empty($_POST['pegmes'])){$dtm = date('m'); echo $dtm;}?>">
+                    <?php 
+                        if(isset($_POST['pegmes']) || !empty($_POST['pegmes'])){ 
+                            $mesoption = verMes($_POST['pegmes']);
+                            echo '<option value="'.$_POST['pegmes'].'">'.$mesoption.'</option>';           
+                        } else {
+                            $dtm = date('m'); echo $dtm;
+                            $mesoption = verMes($dtm);
+                            echo '<option value="'.$dtm.'" selected>'.$mesoption.'</option>';
+                        }
+                    ?>
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+                &nbsp;&nbsp;
+                Ano: <input id='pegano' type='number' value="<?php if(isset($_POST['pegano']) || !empty($_POST['pegano'])){ echo $_POST['pegano'];}?>" placeholder="<?php if(!isset($_POST['pegano']) || empty($_POST['pegano'])){$dta = date('Y'); echo $dta;}?>" name="pegano" min="2017" max="2080">
+                <input id='btnescala' type='submit' value='Pesquisar'>         
             </form>
         </div>
 
@@ -38,6 +61,7 @@
             }
             /* Verificar quantos dias tem o mês informado*/
             $mesref = verMes($mesinformado);
+            
             $referencia = $mesref;
             $referencia .= "/";
             $referencia .= $ano_informado;
@@ -70,6 +94,9 @@
                         <th>ID</th>
                         <th>Funcionário</th>
                         <?php
+                        //$diafolga = 14;
+                        //$tipofolga = 'abo';
+                        //$linfolga['idfolga'] = 1;
                             $mesDias = verDiasDoMes($mesinformado, $ano_informado);
                             for($i= 1; $i <= $mesDias; $i++){
                                 $feriados = array('1/1','21/4','1/5','15/6','7/9','12/10','2/11','15/11','25/12');
@@ -85,69 +112,69 @@
                                         echo '<th style="background:repeating-linear-gradient(45deg,#FF4040,#FF4040 10px,#0080ff 10px,#0080ff 20px);">'.$diasemana[$diasemana_numero].'<br/>'.$i.'</th>';
                                     } else {
                                         echo '<th style="background-color:#FF4040;">'.$diasemana[$diasemana_numero].'<br/>'.$i.'</th>';
-                                    }
-                                    
+                                    }          
                                 }elseif ($diasemana[$diasemana_numero] == "Sab") {
                                     if(in_array($datafe, $feriados)){
                                         echo '<th style="background:repeating-linear-gradient(45deg,yellow,yellow 10px,#0080ff 10px,#0080ff 20px);">'.$diasemana[$diasemana_numero].'<br/>'.$i.'</th>';
                                     } else {
                                         echo '<th style="background-color:yellow;">'.$diasemana[$diasemana_numero].'<br/>'.$i.'</th>';
-                                    }
-                                    
+                                    }   
                                 } elseif (in_array($datafe, $feriados)) {
                                     echo '<th style="background-color:#0080ff;">'.$diasemana[$diasemana_numero].'<br/>'.$i.'</th>';
                                 } else {
                                       echo '<th>'.$diasemana[$diasemana_numero].'<br/>'.$i.'</th>';  
-                                    } 
-                                 }
-                                 
-                                 
+                                } 
+                            }           
                         ?>
                     </tr>
                     <?php
+                        $mesAtual = date('m');
+                        $anoAtual = date('Y');
                         foreach ($resultado as $lin){ 
+                            $idfuncionario = $lin['idusuario'];
                             echo"<tr>";
-                            echo"<th style='background-color:#808080;'>{$lin['idusuario']}</th><th style='background-color:#C0C0C0;'><a href = 'marcar_folga&idusuario={$lin['idusuario']}'>{$lin['nome']}&nbsp;{$lin['sobrenome']}</a></th>";
-                            /*$resultadoFolga = $folga->exibirFolgaPorData($idFuncionario,$mesinformado,$anoinformado);
-                            foreach($resultadoFolga as $linFolga){
-                                $tipofolga = $linFolga['tipo'];
-                                $diafolga  = $linFolga['dia'];
-                                $mesfolga  = $linFolga['mes'];
-                                $anofolga  = $linFolga['ano'];
-                            }*/
-                            $diafolga = 12;
-                            $tipofolga = "sap";
+                            echo"<th style='background-color:#808080;'>{$lin['idusuario']}</th><th style='background-color:#C0C0C0;' class='text-capitalize'>{$lin['nome']}&nbsp;{$lin['sobrenome']}</th>";
+                            
 
                             for($i= 1; $i <= $mesDias; $i++){
-
-                                if($diafolga == $i){
-                                    switch ($tipofolga){
-                                        case"sap":
-                                            echo '<td style="background-color:#98FB98;"><a href="editar_folga&idusuario='.$lin['idusuario'].'&idfolga=1">'.$tipofolga.'</a></td>';
-                                            break;
-                                        case"abo":
-                                            echo '<td style="background-color:#F0E68C;"><a href="editar_folga&idusuario='.$lin['idusuario'].'&idfolga='.$lin['idfolga'].'">'.$tipofolga.'</a></td>';
-                                            break;
-                                        case"con":
-                                            echo '<td style="background-color:#ADD8E6;"><a href="editar_folga&idusuario='.$lin['idusuario'].'&idfolga='.$lin['idfolga'].'">'.$tipofolga.'</a></td>';
-                                            break;
-                                        case"doa":
-                                            echo '<td style="background-color:#FFB6C1;"><a href="editar_folga&idusuario='.$lin['idusuario'].'&idfolga='.$lin['idfolga'].'">'.$tipofolga.'</a></td>';
-                                            break;
-                                        case"ele":
-                                            echo '<td style="background-color:#C0C0C0;"><a href="editar_folga&idusuario='.$lin['idusuario'].'&idfolga='.$lin['idfolga'].'">'.$tipofolga.'</a></td>';
-                                            break;
+                                $resposta = $folga->exibirFolgaPorData($idfuncionario, $i, $mesinformado, $ano_informado);
+                                if($resposta){   
+                                    foreach ($resposta as $linfolga){
+                                        $tipofolga = $linfolga['tipo'];
+                                        $diafolga  = $linfolga['dia'];
+                                        $mesfolga  = $linfolga['mes'];
+                                        $anofolga  = $linfolga['ano'];
+                                    }
+                                    if($diafolga == $i){ 
+                                            switch ($tipofolga){
+                                                case"sap":
+                                                    echo '<td style="background-color:#98FB98;">'.strtoupper($tipofolga).'</td>';
+                                                    break;
+                                                case"abo":
+                                                    echo '<td style="background-color:#F0E68C;">'.strtoupper($tipofolga).'</td>';
+                                                    break;
+                                                case"con":
+                                                    echo '<td style="background-color:#ADD8E6;">'.strtoupper($tipofolga).'</td>';
+                                                    break;
+                                                case"doa":
+                                                    echo '<td style="background-color:#FFB6C1;">'.strtoupper($tipofolga).'</td>';
+                                                    break;
+                                                case"ele":
+                                                    echo '<td style="background-color:#C0C0C0;">'.strtoupper($tipofolga).'</td>';
+                                                    break;
+                                            }                   
+                                    } else {
+                                        echo '<td></td>';
                                     }
                                 } else {
                                     echo '<td></td>';
-                                }
+                                }                              
                             }
                             echo"</tr>";
                         }
                     ?>
                 </thead>
                 <tbody>
-
             </table>
         </div>
     </div>    

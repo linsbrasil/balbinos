@@ -5,8 +5,8 @@
             header("location:".SITE_URL."/CHEFIA/erro");
         } else {
             $dados = $_POST['dados'];
-            $folga = new Folga();
-            $resultado = $folga->marcarFolga($dados);
+            $folga = new FolgaDAO();
+            $resultado = $folga->editarFolga($dados);
             if($resultado){
                 header("location:".SITE_URL."/CHEFIA/sucesso");
             } else {

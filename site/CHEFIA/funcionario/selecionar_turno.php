@@ -2,12 +2,11 @@
 <div class="container-fluid " id='oro'>
 
     <?php
-        include_once '../../modelo/funcionario/UsuarioDAO.php';
         $funcionario = new UsuarioDAO();
         $idunidade = 1;//$_SESSION['idunidade'];
         $cargo = 'asp';//$_SESSION['cargo'];
         $plantao = 't2';// $_SESSION['plantao'];
-        $resultado = $funcionario->selecionarPlantao($idunidade, $cargo, $plantao);
+        $resultado = $funcionario->selecionarTurno($idunidade, $cargo, $plantao);
     ?>
 
     <div id="top" class="container-fluid">
@@ -50,10 +49,10 @@
                     foreach ($resultado as $lin){ 
                         echo"<tr>
                             <th>{$lin['idusuario']}</th>
-                            <td>{$lin['nome']}</td>
+                            <td class='text-capitalize'>{$lin['nome']}</td>
                             <td>{$lin['email']}</td>
-                            <td>{$lin['cargo']}</td>
-                            <td>{$lin['plantao']}</td>
+                            <td class='text-uppercase'>{$lin['cargo']}</td>
+                            <td class='text-uppercase'>{$lin['turno']}</td>
                             <td><a href='perfil&idusuario={$lin['idusuario']}' class='btn btn-success btn-sm col-md-12'>Visualizar</a></td>
                         </tr>";
                     }

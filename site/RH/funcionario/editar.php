@@ -25,7 +25,7 @@
     <div class="row ">
         <h3 class="page-header text-center">Alterar dados do Usuário</h3>
         <div class="col-md-12">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-6 col-md-offset-3 formfundo">
                 <!--Inicio do formulário-->
                 <form name='cadastro' method='post' action='<?php echo SITE_URL; ?>/controle/RH/editar.php' enctype="" >
                     <!-- area de campos do form -->

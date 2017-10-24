@@ -2,8 +2,7 @@
 <div class="container-fluid " id="oro">
     <?php
         $funcionario = new UsuarioDAO();
-        $idunidade = $_SESSION['idunidade'];
-        $resultado = $funcionario->selecionarTudoRH($idunidade);
+        $resultado = $funcionario->selecionarTudoRH($idunidade_login);
     ?>
     <div id="top" class="container-fluid">
         <div class="col-md-3">
@@ -31,7 +30,7 @@
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th >ID</th>
                         <th>Nome</th>
                         <th>Email</th>
                         <th>Cargo</th>
@@ -47,10 +46,10 @@
                     foreach ($resultado as $lin){ 
                         echo"<tr>
                             <th>{$lin['idusuario']}</th>
-                            <td>{$lin['nome']}</td>
+                            <td class='text-capitalize'>{$lin['nome']}</td>
                             <td>{$lin['email']}</td>
-                            <td>{$lin['cargo']}</td>
-                            <td>{$lin['plantao']}</td>
+                            <td class='text-uppercase'>{$lin['cargo']}</td>
+                            <td class='text-uppercase'>{$lin['turno']}</td>
                             <td><a href='perfil&idusuario={$lin['idusuario']}' class='btn btn-success btn-sm col-md-12'>Visualizar</a></td>
                             <td><a href='editar_usuario&idusuario={$lin['idusuario']}' class='btn btn-warning btn-sm col-md-12'>Editar</a></td>
                             <td><a onclick='excluir();' href='#' class='btn btn-danger btn-sm col-md-12 delete' data-toggle='modal' data-target='#delete-modal' data-funcionario='{$lin['idusuario']}' >Excluir</a></td>

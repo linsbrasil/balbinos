@@ -1,7 +1,7 @@
 <?php 
 include_once '../../inc/inc.php';
 session_start();
-    /*session_start();
+    /*
     if(!isset($_SESSION['id_login']) && !isset($_SESSION['nome_login'])  && !isset($_SESSION['email_login']) && !isset($_SESSION['nivel_login'])){
         header("location:".SITE_URL);
     }
@@ -71,7 +71,7 @@ if(empty($_SESSION['nome'])){
             case 'quadro':
                 include_once 'funcionario/quadro.php';
                 break;
-            case 'selecionar':
+            case 'funcionarios':
                 include_once 'funcionario/selecionar.php';
                 break;
             case 'alterar_senha':
