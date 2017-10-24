@@ -1,8 +1,13 @@
 <?php 
 include_once '../../inc/inc.php';
 session_start();
+<<<<<<< HEAD
 
     /*
+=======
+include_once '../../inc/inc.php';
+    /*session_start();
+>>>>>>> origin/master
     if(!isset($_SESSION['id_login']) && !isset($_SESSION['nome_login'])  && !isset($_SESSION['email_login']) && !isset($_SESSION['nivel_login'])){
         header("location:".SITE_URL);
     }

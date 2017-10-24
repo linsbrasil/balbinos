@@ -98,6 +98,34 @@
                         <a href="#" class="dropdown-toggle" id="menu1" data-toggle="dropdown"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="perfil&idusuario=<?php echo $id_login; ?>"><b>Ver perfil</b></a></li>
+=======
+                    <li><a href="usuarios">Exibir</a></li><!-- href="?link=usuarios" no .htaccess -->
+                    <li>
+                        <a href="#" class="dropdown-toggle" id="menu1" data-toggle="dropdown">Pesquisar por turno<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><b>ADM</b></a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href=""><b>ASP's</b></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno I</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno II</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno III</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno IV</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Diarista</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href=""><b>AEVP's</b></a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno I</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno II</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno III</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turno IV</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Diarista</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="http://www.aluguetemporada.com.br" target="_blank">Colônia de Férias</a></li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" id="menu1" data-toggle="dropdown"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i><span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="perfil&idusuario={$_SESSION['id_login']}"><b>Ver perfil</b></a></li>
+>>>>>>> origin/master
                             <li role="presentation" class="divider"></li>
                             <li role="presentation"><a role="menuitem" tabindex="-1" href="alterar_senha"><b>Alterar senha</b></a></li>
                             <li role="presentation" class="divider"></li>
